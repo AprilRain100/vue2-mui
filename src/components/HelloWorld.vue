@@ -29,7 +29,7 @@ export default {
     }
   },
   mounted () {
-    mui.alert(1);
+    mui.alert('你好，这个世界');
   }
 }
 </script>
