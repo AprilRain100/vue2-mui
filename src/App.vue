@@ -8,6 +8,7 @@
   require('./public/mui')
 </script>
 
-<style>
+<style lang="less">
+  @import "public/common.css";
   @import "public/mui.css";
 </style>
