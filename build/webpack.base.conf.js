@@ -3,6 +3,7 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
+const webpack = require('webpack')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -25,6 +26,7 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      'mui': resolve('src/public/mui.js')
     }
   },
   module: {
@@ -47,7 +49,8 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test')]
+        include: [resolve('src'), resolve('test')],
+        exclude: [/node_modules/, /public/] // 页面启动报错 加入mui.js 转成es6
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -74,5 +77,10 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [ // 注册mui插件
+    new webpack.ProvidePlugin({
+      mui: 'mui'
+    })
+  ]
 }
