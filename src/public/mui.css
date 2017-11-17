@@ -4655,7 +4655,7 @@ select:focus
     font-weight: normal;
     font-style: normal;
 
-    /*src: url('../fonts/mui.ttf') format('truetype');*/
+    src: url('./font/mui.ttf') format('truetype');
 }
 .mui-icon
 {

@@ -1,0 +1,1161 @@
+/* *
+ *     顾客
+ * */
+#coustomerHeader .mui-icon {
+  font-size: 20px !important;
+}
+ul,
+li,
+p {
+  margin: 0;
+  padding: 0;
+}
+/*－－－－－－－－－－ 新增客户页面－－－－－－－－ */
+[v-cloak] {
+  display: none;
+}
+li {
+  list-style-type: none;
+}
+/* 编辑头像 */
+#addCustomer .photo {
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 10px 0px;
+  margin: 15px 0 18px 0;
+  background-color: #fff;
+  height: 80px;
+  position: relative;
+  overflow: hidden;
+}
+#addCustomer .photo a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+#addCustomer .photo img {
+  width: 66px;
+  height: 66px;
+  border-radius: 33px;
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  margin-top: -33px;
+}
+#addCustomer .photo span.editor {
+  color: #ccc;
+  font-size: 14px;
+  position: absolute;
+  line-height: 70px;
+  height: 70px;
+  display: inline-block;
+  left: 95px;
+}
+/* 添加客户*/
+.add_customer {
+  background: #efeff4;
+  font-size: 14px;
+  color: #999;
+}
+.add_customer .baseInfo {
+  margin: 15px 0;
+}
+.add_customer li {
+  min-height: 44px;
+  background: #FFFFFF;
+}
+.add_customer span {
+  float: left;
+  width: 25%;
+  line-height: 30px;
+  font-size: 14px;
+  color: #000;
+}
+.add_customer a sup {
+  color: red;
+}
+.add_customer a input {
+  float: right;
+  border: none;
+  font-size: 14px;
+  width: 70%;
+  height: 30px;
+  line-height: 30px;
+  margin: 0px;
+  text-align: right;
+  padding: 0;
+}
+.add_customer a b {
+  float: right;
+  margin-right: 15px;
+  line-height: 30px;
+  height: 30px;
+  width: 60%;
+  text-align: right;
+  font-weight: normal;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.addressIputBox {
+  background: #FFFFFF;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  overflow: hidden;
+  position: relative;
+  clear: both;
+  border-bottom: 1px solid #e1e1e1;
+}
+.addressIputBox .input_left {
+  width: 83%;
+  height: 30px;
+  float: left;
+  position: relative;
+}
+.addressIputBox .input_left input {
+  width: 100%;
+  font-size: 12px;
+  padding: 3px 5px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  background-color: #F1F1F1;
+  color: #333;
+  text-indent: 25px;
+}
+.addressIputBox .input_left:before {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  color: #858585;
+  font-size: 18px;
+}
+.addressIputBox .input_left .mui-icon {
+  position: absolute;
+  right: 6px;
+  top: 3px;
+}
+.addressIputBox .input_right {
+  width: 15%;
+  float: left;
+  font-size: 14px;
+  height: 30px;
+  text-align: right;
+  line-height: 30px;
+  color: #F6953A;
+}
+.addressList {
+  position: absolute;
+  top: 95px;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+  background: #FFFFFF;
+}
+.addressList ul {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  width: 100%;
+}
+.addressList li {
+  border-bottom: 1px solid #e1e1e1;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  width: 100%;
+  overflow: hidden;
+}
+.addressList li h3 {
+  font-size: 16px;
+  color: #333;
+  font-weight: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.addressList li p {
+  font-size: 12px;
+  color: #969696;
+  padding: 0;
+  margin: 0;
+}
+.addressList .noAddress {
+  text-align: center;
+  padding-top: 30px;
+  color: #858585;
+}
+#addCustomer .nextBtn {
+  width: 90%;
+  background: #f68c24;
+  color: #FFFFFF;
+  display: block;
+  border: none;
+  padding: 10px;
+  margin: 40px auto;
+}
+.choose_list {
+  font-size: 14px;
+  color: #666;
+}
+/* 发短信页面 */
+.message-box {
+  background: #FFFFFF;
+  overflow: hidden;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-bottom: 1px solid #d1d1d1;
+}
+#customerCallPage {
+  transition-property: -webkit-transform;
+  -webkit-transform-origin: 0px 0px 0px;
+          transform-origin: 0px 0px 0px;
+  -webkit-transform: translate3d(0px, 0px, 0px);
+          transform: translate3d(0px, 0px, 0px);
+}
+#customerCallPage .customer_call {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+}
+#customerCallPage div.call_head {
+  position: relative;
+  border-bottom: 1px solid #d1d1d1;
+  background: #fff;
+  padding-left: 15px;
+  height: 44px;
+}
+#customerCallPage div.call_head img {
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  top: 7px;
+  left: 15px;
+}
+#customerCallPage div.call_head .name {
+  font-size: 14px;
+  color: #666;
+  line-height: 44px;
+  margin-left: 44px;
+}
+#customerCallPage div.call_head a {
+  position: absolute;
+}
+#customerCallPage div.call_head a:nth-of-type(1) {
+  top: 7px;
+  right: 15px;
+}
+#customerCallPage div.call_head a:nth-of-type(2) {
+  top: 7px;
+  right: 50px;
+}
+#customerCallPage div.call_target {
+  line-height: 30px;
+  color: #666;
+  border-bottom: 1px solid #d1d1d1;
+  font-size: 12px;
+  text-indent: 15px;
+}
+#customerCallPage div.call_record {
+  height: 110px;
+  padding: 8px 0;
+  background: #FFFFFF;
+  margin-bottom: 10px;
+}
+#customerCallPage div.call_record textarea {
+  border: 0;
+  width: 90%;
+  height: 100%;
+  font-size: 12px;
+  color: #666;
+  line-height: 16px;
+  padding: 0px;
+  margin: 0 auto;
+  display: block;
+}
+#customerCallPage .soundRecord {
+  height: 40px;
+  background: #fff;
+  border-top: 1px solid #d1d1d1;
+  border-bottom: 1px solid #d1d1d1;
+  position: relative;
+  margin-left: -15px;
+  clear: both;
+  overflow: hidden;
+}
+#customerCallPage .soundRecord > div {
+  line-height: 38px;
+  float: left;
+  margin-left: 10px;
+  font-size: 10px;
+}
+#customerCallPage .soundRecord > div .mui-icon {
+  line-height: 38px;
+  color: #8cc63f;
+  margin-left: 25px;
+}
+#customerCallPage .soundRecord .soundDele {
+  float: right;
+  line-height: 40px;
+  margin-right: 25px;
+  color: #f75314;
+}
+div.call_bottom {
+  height: 34px;
+  width: 100%;
+  margin-top: 15px;
+  padding: 0 5%;
+  background: transparent;
+}
+div.call_bottom a {
+  height: 34px;
+  line-height: 34px;
+  display: inline-block;
+  width: 42%;
+  text-align: center;
+  border-radius: 5px;
+  color: #fff;
+}
+div.call_bottom a.call_cancel {
+  background: #b3b3b3;
+}
+div.call_bottom a.call_submit {
+  background: #8cc63f;
+  margin-left: 6%;
+}
+#actionsheet {
+  background: #fff;
+  overflow: hidden;
+}
+#actionsheet .box {
+  height: 200px;
+  width: 100%;
+  overflow: hidden;
+}
+#actionsheet .box span {
+  width: 80px;
+  height: 80px;
+  color: #f68c24;
+  display: block;
+  font-size: 80px;
+  margin: 60px auto 0 auto;
+}
+#actionsheet .box .timeText {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 20px;
+  left: 0;
+  font-size: 14px;
+}
+#actionsheet .box .bottomtext {
+  text-align: center;
+  line-height: 30px;
+  padding-top: 10px;
+}
+#actionsheet .closeAction {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: block;
+  width: 30px;
+  height: 30px;
+  color: #7a7a7a;
+}
+#actionsheet .closeAction span {
+  font-size: 30px;
+}
+/* 顾客详情 */
+.cMargin {
+  margin: 10px 0;
+  position: relative;
+}
+.customer_list .mui-icon:before {
+  padding: 0 5px 0 0;
+  font-size: 16px;
+}
+.photo {
+  background-color: #fff;
+  height: 80px;
+  overflow: hidden;
+  position: relative;
+}
+.photo a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.photo img {
+  width: 66px;
+  height: 66px;
+  border-radius: 33px;
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  margin-top: -33px;
+}
+.photo span.editor {
+  color: #ccc;
+  font-size: 14px;
+  position: absolute;
+  line-height: 70px;
+  height: 70px;
+  display: inline-block;
+  left: 95px;
+}
+.photo div.employee {
+  position: absolute;
+  top: 20px;
+  left: 90px;
+  font-size: 14px;
+}
+.photo div.employee span {
+  font-size: 14px;
+  color: #00b4ff;
+}
+.photo div.employee p {
+  margin: 0;
+}
+.photo div.employee p span {
+  color: #8f8f94;
+}
+.photo p.phone {
+  color: #00b4ff;
+}
+.photo .show_created {
+  color: #999;
+  font-size: 12px;
+  position: absolute;
+  line-height: 30px;
+  height: 30px;
+  display: inline-block;
+  right: 15px;
+  bottom: 5px;
+}
+.otherChance {
+  font-size: 14px;
+  color: #888;
+  text-indent: 10px;
+  font-weight: normal;
+  padding-top: 10px;
+}
+.otherChanceList .creatDate span:nth-of-type(1) {
+  color: #f68c26;
+  font-size: 14px;
+}
+.otherChanceList .creatDate span:nth-of-type(2) {
+  color: #888;
+  font-size: 12px;
+  padding-left: 15px;
+}
+.otherChanceList .wantProject {
+  color: #414141;
+  font-size: 14px;
+  padding-top: 10px;
+  width: 100%;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-right: 10px;
+}
+.customer_button {
+  height: 60px;
+  line-height: 38px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  padding: 12px 0px;
+  background: #fff;
+  z-index: 10;
+  border-top: 1px solid #e1e1e1;
+}
+.customer_button div {
+  position: absolute;
+  width: 90%;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 14px;
+  background: #ffffff;
+}
+.customer_button span {
+  color: #fff;
+}
+.customer_button .add_track {
+  right: 3%;
+  background: #8cc63f;
+}
+.customer_button .track_list {
+  left: 5%;
+  background: #f68c25;
+}
+.details_list li {
+  min-height: 44px;
+}
+.details_list span,
+.details_list b {
+  font-size: 14px;
+  color: #333;
+}
+.details_list span mark {
+  color: #999;
+  background: none;
+}
+.details_list b {
+  font-weight: normal;
+}
+/* 顾客动态 */
+.dynamic_head {
+  height: 98px;
+  background: #fff;
+  border-bottom: 1px solid #d9d9d9;
+}
+.dynamic_head img {
+  height: 64px;
+  width: 64px;
+  border-radius: 50%;
+  margin: 20px 12px 14px 15px;
+  float: left;
+}
+.dynamic_head p {
+  margin-top: 5px;
+  font-size: 11px;
+  color: #999;
+  line-height: 11px;
+  margin-bottom: 0px;
+}
+.dynamic_head .name {
+  margin: 0;
+  font-size: 13px;
+  color: #000;
+  line-height: 13px;
+  padding-top: 21px;
+}
+.dynamic_content {
+  position: absolute;
+  top: 142px;
+  bottom: 50px;
+  left: 0px;
+  width: 100%;
+}
+.dynamic_content .left_line,
+.dynamic_content .right_line {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: #c9c9c9;
+}
+.dynamic_content .left_line {
+  left: 10px;
+}
+.dynamic_content .right_line {
+  right: 10px;
+}
+.dynamic_content ul {
+  margin: 12px 25px 0 27px;
+  background: #ffffff;
+  border: 1px solid #d6d6d6;
+  border-radius: 5px;
+  padding: 0px;
+}
+.dynamic_content ul li {
+  position: relative;
+  padding: 10px 8px;
+}
+.dynamic_content ul li:before {
+  content: attr(num);
+  position: absolute;
+  background: #ebb77e;
+  font-size: 10px;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 10px;
+  border: 2px solid #fff;
+  top: 10px;
+}
+.dynamic_content ul li img {
+  width: 6px;
+  height: 12px;
+  position: absolute;
+  top: 11px;
+}
+.dynamic_content ul li p {
+  color: #999999;
+  font-size: 9px;
+  line-height: 9px;
+}
+.dynamic_content ul li div {
+  font-size: 12px;
+  color: #333;
+  line-height: 14px;
+  margin-top: 9px;
+}
+.dynamic_content ul li div .mui-icon {
+  font-size: 18px;
+  color: #8cc63e;
+}
+.dynamic_content ul.left_dynamic > li {
+  text-align: left;
+}
+.dynamic_content ul.left_dynamic > li:before {
+  left: -25px;
+}
+.dynamic_content ul.left_dynamic > li img {
+  left: -6px;
+}
+.dynamic_content ul.right_dynamic > li {
+  text-align: right;
+}
+.dynamic_content ul.right_dynamic > li:before {
+  right: -22px;
+  background: #7ccd7e;
+}
+.dynamic_content ul.right_dynamic > li img {
+  right: -6px;
+}
+#dynamic_scroll {
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+}
+#dynamic_scroll .mui-pull-top-pocket {
+  top: 0;
+}
+#dynamic_scroll .mui-scroll-wrapper {
+  background: none;
+  padding-bottom: 10px;
+}
+#dynamicWrap .noData {
+  width: 100%;
+  height: 100%;
+   /* background: url('../../core/images/null.png') no-repeat center 15%; */
+  -webkit-background-size: 150px 150px;
+          background-size: 150px 150px;
+}
+.dynamic_bottom {
+  height: 50px;
+  width: 100%;
+  margin-top: 4px;
+  position: absolute;
+  bottom: 0px;
+}
+.dynamic_bottom a {
+  display: inline-block;
+  height: 44px;
+  line-height: 44px;
+  font-size: 18px;
+  color: #fff;
+  width: 84%;
+  text-align: center;
+  background: #f68c26;
+  margin: 0 8%;
+  border-radius: 5px;
+}
+/* 顾客页面*/
+.add-menu-wrapper {
+  position: absolute;
+  z-index: 1000001;
+  right: 8px;
+  top: 33px;
+}
+.add-menu-wrapper:before {
+  display: inline-block;
+  content: '';
+  width: 0;
+  height: 0;
+  border-bottom: 8px solid #f68c25;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  margin-bottom: -8px;
+  margin-left: 90px;
+}
+.add-menu-wrapper .add-menu {
+  background-color: #f68c25;
+  border-radius: 3px;
+}
+.add-menu-wrapper .add-menu p {
+  color: #fff;
+  padding: 8px 15px;
+  text-align: center;
+}
+.add-menu-wrapper .add-menu p:first-child {
+  border-bottom: 1px solid #fff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+.mui-backdrop.menu-backdrop {
+  background-color: rgba(0, 0, 0, 0);
+}
+#customer .mui-pull-top-pocket {
+  top: 0px;
+}
+#customer .customer_list {
+  overflow: hidden;
+}
+#customer .mui-segmented-control {
+  background: #fff !important;
+  border-radius: 0;
+  border: none;
+}
+.top-tab-component {
+  top: 89px;
+}
+.top-tab-component .mui-segmented-control .mui-control-item {
+  border-left: 1px solid #e3e3e3;
+  color: #888;
+  font-size: 12px;
+  line-height: 35px;
+}
+.top-tab-component .mui-segmented-control .mui-control-item i,
+.top-tab-component .mui-segmented-control .mui-control-item span {
+  font-size: 14px;
+  margin-right: 5px;
+}
+.top-tab-component .mui-segmented-control .mui-control-item:after {
+  display: none;
+}
+.top-tab-component .mui-segmented-control .mui-active {
+  background: #FFFFFF;
+  color: #f68c24;
+}
+.customer .maturity_t {
+  float: right;
+  text-align: center;
+  color: #fff;
+  width: 56px;
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.customer .maturity_t .content_t {
+  background-color: red;
+  height: 24px;
+  line-height: 24px;
+  font-size: 12px;
+}
+.customer .maturity_t .triangle-down {
+  width: 56px;
+  height: 0;
+  border-top: 9px solid red;
+  border-left: 28px solid transparent;
+  border-right: 28px solid transparent;
+}
+.customer .mui-table-view-cell:after {
+  background: none;
+}
+.customer .mui-card {
+  margin: 0px 10px 10px 10px;
+  border: none;
+  border-top-right-radius: 0px;
+}
+.customer .mui-card .mui-navigate-right:after {
+  top: 35px;
+  right: 40px;
+  color: #b3b3b3;
+  font-size: 20px;
+}
+.customer .mui-card .title {
+  display: block;
+  position: relative;
+  height: 70px;
+  margin: 0px !important;
+  padding: 0px;
+  width: 100%;
+  border-bottom: 1px solid #e8e8e8;
+}
+.customer .mui-card .title .mui-icon {
+  font-size: 14px;
+}
+.customer .mui-card .title .yk-icon-chat {
+  color: #33cccc;
+}
+.customer .mui-card .title .yk-icon-tel {
+  color: #3ba0ff;
+}
+.customer .mui-card .title img {
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  float: left;
+  margin-top: 12px;
+  margin-left: 12px;
+}
+.customer .mui-card .title h5 {
+  position: absolute;
+  top: 14px;
+  left: 80px;
+  font-size: 10px;
+  color: #999;
+  width: 100px;
+}
+.customer .mui-card .title span {
+  display: inline-block;
+}
+.customer .mui-card .title span.name {
+  color: #333;
+  font-size: 16px;
+  margin-top: 12px;
+  margin-left: 8px;
+  width: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.customer .mui-card .title span.principal {
+  color: #888;
+  font-size: 12px;
+  float: right;
+  margin-top: 14px;
+  margin-right: 61px;
+  width: 80px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.customer .mui-card .title p.houses {
+  margin-left: 69px;
+  margin-top: 8px;
+  font-size: 12px;
+}
+.customer .mui-card .title p.houses .mui-icon {
+  margin-right: 3px;
+  color: #61bfff;
+  overflow: hidden;
+}
+.customer .mui-card .title p.houses .building {
+  overflow: hidden;
+  line-height: 12px;
+}
+.customer .mui-card .title p.houses .address {
+  width: 56%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 12px;
+}
+.customer .mui-card .status p.product {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.customer .mui-card .status p.product .productName {
+  color: #000;
+}
+.customer .mui-card .status p > span > span {
+  color: #333;
+}
+.customer .mui-card .status p > span > span i {
+  font-style: normal;
+}
+.customer .mui-card .status p.cycle {
+  margin-top: 5px;
+}
+.customer .mui-card .status p.cycle span:nth-child(2) {
+  float: right;
+}
+.customer .mui-card .mui-table-view-chevron .mui-table-view-cell > a:not(.mui-btn) {
+  margin-right: -100px;
+}
+.customer_list li {
+  float: left;
+  width: 25%;
+  border-right: 1px solid #e8e8e8;
+  text-align: center;
+  height: 50px;
+  margin-top: 5px;
+  position: relative;
+}
+.customer_list li p {
+  height: 25px;
+  line-height: 25px;
+  font-size: 12px;
+  color: #777;
+}
+.customer_list li:last-child {
+  border-right: none;
+}
+.customer_list li.grey p {
+  color: #ccc;
+}
+.customer_list li.grey .yk-icon-chat-2:before {
+  color: #ccc;
+}
+.customer_list li:nth-of-type(1) p.mui-icon {
+  color: #32ccbe;
+}
+.customer_list li:nth-of-type(2) p.mui-icon {
+  color: #52aadb;
+}
+.customer_list li:nth-of-type(4) p.mui-icon {
+  color: #f7931e;
+}
+/* 局部滚动 */
+div.c_scroll {
+  top: 140px;
+  padding-bottom: 60px;
+}
+/*机会标签*/
+.flexLabel span {
+  height: 32px;
+  line-height: 32px;
+  padding: 0px 20px 0px 20px;
+  border-radius: 16px;
+  margin: 8px 12px;
+  display: inline-block;
+  font-size: 14px;
+  background-color: #FFFFFF;
+}
+.flexSpanColor1 {
+  border: 1px solid #0680db;
+  color: #0680db;
+}
+.flexSpanColor2 {
+  border: 1px solid #2ddae2;
+  color: #2ddae2;
+}
+.flexSpanColor3 {
+  border: 1px solid #577c43;
+  color: #577c43;
+}
+.flexSpanColor4 {
+  border: 1px solid #e08200;
+  color: #e08200;
+}
+.flexSpanColor5 {
+  border: 1px solid #ae7388;
+  color: #ae7388;
+}
+.floatSpan {
+  float: left;
+}
+.flex {
+  display: -webkit-box;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 10px 5px;
+  min-height: 100px;
+}
+.chance-label-top .flex span:after {
+  content: '\e460';
+  display: inline-block;
+  text-align: center;
+  margin-left: 10px;
+  font-family: Muiicons;
+  font-size: 24px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+}
+.chance-label-top .title {
+  height: 40px;
+  line-height: 40px;
+  background-color: #efefef;
+  color: #666;
+  font-size: 14px;
+  padding-left: 20px;
+}
+/*添加标签输入区域*/
+.chance-label-top {
+  background-color: #fff;
+  min-height: 80px;
+}
+.chance-label-bottom .chanceInput {
+  padding: 10px;
+}
+.chance-label-bottom .chanceInput .input_div {
+  position: relative;
+  height: 35px;
+  line-height: 35px;
+}
+.chance-label-bottom .chanceInput .input_div .input_left {
+  display: inline-block;
+  width: 80%;
+  margin: 0px;
+  height: 32px;
+  line-height: 29px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+.chance-label-bottom .chanceInput .input_div .input_left .input {
+  display: inline-block;
+  width: 80%;
+  height: 32px;
+  line-height: 29px;
+  border: none;
+  font-size: 14px;
+  margin-left: 14px;
+  -webkit-user-select: text;
+}
+.chance-label-bottom .chanceInput .input_div .input_left .span:before {
+  display: inline-block;
+  font-family: "微软雅黑";
+  content: "1";
+}
+.chance-label-bottom .chanceInput .input_div .input_right {
+  display: inline-block;
+  height: 32px;
+  width: 42px;
+  text-align: center;
+  background-color: #7EBB00;
+  color: white;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+.chance-label-bottom .chanceInput .input_div .input_right span {
+  font-size: 18px;
+  line-height: 32px;
+}
+.prompt {
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px 15px;
+  font-size: 12px;
+  color: #fa5200;
+}
+.saveBtn {
+  display: block;
+  width: 90%;
+  margin: 30px auto;
+  height: 40px;
+  color: #fff;
+  background: #f68c24;
+}
+/*添加标签点击区域*/
+.chanceClick {
+  margin-top: 10px;
+}
+.chanceClick .title {
+  height: 40px;
+  line-height: 40px;
+  background-color: #efefef;
+  color: #666;
+  font-size: 14px;
+  padding-left: 20px;
+}
+/*是否有新顾客提示层*/
+.hint_message {
+  position: absolute;
+  background: #f68c25;
+  opacity: 0.75;
+  height: 30px;
+  width: 100%;
+  color: #fff;
+  line-height: 30px;
+  text-align: center;
+  font-size: 12px;
+  top: 123px;
+}
+/*机会条顾客详情*/
+#icon-phone {
+  position: absolute;
+  margin: 3px;
+  top: 10px;
+  right: 15px;
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  text-align: center;
+  border: 1px solid #66D06D;
+  border-radius: 25px;
+  -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+}
+#icon-phone span {
+  margin-top: 12px;
+  color: #66D06D;
+}
+ul.employee li {
+  margin-left: 45px;
+  line-height: 25px;
+  font-size: 14px;
+  color: #333;
+}
+.customer-table-view {
+  background-color: #efefef;
+}
+.newBefore {
+  text-indent: 1em;
+  padding: 6px 0;
+  color: #8f8f94;
+  font-size: 12px;
+}
+#addNewCustomer .text {
+  width: 65%;
+  position: relative;
+}
+#addNewCustomer .text .name {
+  color: #414141;
+}
+#addNewCustomer .text .ways {
+  color: #979797;
+  font-size: 12px;
+}
+#addNewCustomer .list {
+  position: relative;
+}
+#addNewCustomer .list .addBtn {
+  position: absolute;
+  width: 50px;
+  height: 22px;
+  background: #f68c24;
+  color: #fff;
+  font-size: 12px;
+  right: 10px;
+  top: 20px;
+  text-align: center;
+  line-height: 22px;
+  border-radius: 12px;
+}
+#addNewCustomer .mui-table-view-cell:after {
+  left: 0;
+}
+#customer-detail ul:before {
+  background: none;
+}
+#customer-detail ul:after {
+  background: none;
+}
+#search-condition .mui-table-view {
+  margin-top: 24px;
+}
+#search-condition .mui-table-view .mui-navigate-right span {
+  font-size: 14px;
+  float: right;
+  margin-right: 20px;
+  color: #ccc;
+}
+#search-condition .mui-table-view .mui-navigate-right span.black {
+  color: #333;
+}
+#search-condition .btn-wrapper {
+  background-color: #fff;
+  padding: 10px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+#search-condition .btn-wrapper button {
+  background-color: #f68c25;
+  color: #fff;
+  border: none;
+  width: 90%;
+  line-height: 30px;
+  font-size: 16px;
+}
+#search-condition .mui-table-view-cell > a:not(.mui-btn) {
+  font-size: 14px;
+}
