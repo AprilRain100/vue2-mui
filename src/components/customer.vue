@@ -1,6 +1,6 @@
 <style lang="less" scoped>
-  @import "../assets/css/customer2.css";
-  //   @import '../assets/css/customer.less';
+  // @import "../assets/css/customer2.css";
+    @import '../assets/css/customer.less';
   @import "../assets/css/top-tap-component";
 
   #customer {
@@ -27,14 +27,15 @@
     </mui-header>
 
     <div class="mui-content" id="customer">
-      <mui-search :placeholder="placeholder" @muiSearch="muiSearch"></mui-search>
+      <mui-search :placeholder="placeholder"></mui-search>
       <div class="mark" v-show="markShow" @tap="showMark(false)"></div>
       <div class="top-tab-component">
         <div class="top-content-box">
           <div id="segmentedControl" class="mui-segmented-control customer-list-tab">
             <a class="mui-control-item" @tap="chooseSearch(0)">{{ 0 || '机会成熟度'}}<i></i></a>
             <a class="mui-control-item" @tap="showMark(true)" href="#createDate">{{'创建时间'}}<i></i></a>
-            <a class="mui-control-item" @tap="moreSearch"><span class="mui-icon yk-icon-filler"></span>更多查询</a>
+            <a class="mui-control-item" @tap="morSearch(true)" href="#createDate"><span class="mui-icon yk-icon-filler"></span>更多查询</a>
+            <!-- <router-link tag="span" to="/customer/morSearch" @click.stop="morSearch($event)" class="mui-control-item"><span class="mui-icon yk-icon-filler"></span>更多查询</router-link> -->
           </div>
           <div class="top-tab-content" v-show="markShow">
             <div class="mui-control-content" id="createDate">
@@ -46,25 +47,23 @@
       </div>
       <mui-scroll-refresh :bottom="bottom" :top="customerData.top">
         <ul class="customer customer-table-view">
-          <li class="mui-card " v-for="(row, index) in rows" :key="index">
+          <li class="mui-card " v-for="(row, index) in rows" :key="index" @tap="detail(row.id)">
             <div class="title">
               <img :src="row.photo" onerror="javascript:this.src='../customer/img/man.png'"/>
               <div class="customer-info">
-                <span class="name" v-text="row.customerName"></span>
-                <span class="principal">负责人：{{row.personInCharge}}</span>
+                <span class="name" v-text="row.name"></span>
+                <span class="principal">负责人：{{row.sellerName}}</span>
                 <p class="houses">
                   <span class="mui-icon yk-icon-ico-tel"></span>
-                  <span class="building">电话：</span>
-                  <span class="address">{{11111111 || row.address}}{{row.doorNumber}}</span>
-                  <!-- <span style="color: blue" @tap="goLable">查看标签</span> -->
-                  <router-link to="customer/lookLable">查看标签</router-link>
+                  <span class="building">电话：{{row.mobile}}</span>
+                  <a @tap.stop="goLab">查看标签</a>
                 </p>
               </div>
 
               <div class="maturity_t">
                 <div class="content_t"
                      :style="{'background-color' : maturityColors[index]}"
-                     v-text="row.mature"></div>
+                     v-text="row.tagName"></div>
                 <div class="triangle-down"
                      :style="{'border-top-color' : maturityColors[index]}"></div>
               </div>
@@ -72,18 +71,10 @@
 
             <ul class="status mui-table-view mui-table-view-chevron">
               <li class="mui-table-view-cell">
-                <a class="mui-navigate-right" @tap="detail(row.trackId)">
-                  <!-- <p class="product" v-if="row.tags">
-                      <span>意向产品：<span v-for="tag in row.tags" v-text="tag.name + '; ' "></span></span>
-                  </p> -->
-                  <!-- <p v-else class="product" ><span v-text="row.matureId===2?'成交产品:':'订单产品:'"></span>
-                      <span class="productName" v-for="product in row.products"
-                            v-text="product.name + '; ' "></span>
-                  </p> -->
+                <a class="mui-navigate-right" >
                   <p class="cycle">
-                    <!--<span>跟进周期：<span><i v-text="row.period"></i>天</span></span>-->
-                    <span>创建时间：<span><i v-text="row.createdDate"></i></span></span>
-                    <span>未跟进：<span><i v-text="row.noTrack"></i>天</span></span>
+                    <span>创建时间：<span><i>{{row.createTime | dates}}</i></span></span>
+                    <span>未跟进：<span><i v-text="row.noFallowDay"></i>天</span></span>
                   </p>
                 </a>
               </li>
@@ -93,7 +84,7 @@
 
       </mui-scroll-refresh>
     </div>
-    <router-link to="/customer/cusDetails">hhhhh</router-link>
+    <router-link to="/customer/cusDetail">hhhhh</router-link>
     <transition name="router-fade" mode="out-in">
       <router-view></router-view>
     </transition>
@@ -106,7 +97,8 @@
   import MuiSearch from './common/mui-search.vue'
   import topTabTime from './common/top-tab-time.vue'
   import muiScrollRefresh from './common/mui-scroll-refresh.vue'
-  import { getCustomerList } from '../public/getData'
+  import { getCustomerList, getLoginUser } from '../public/getData'
+  import axios from 'axios'
 
   export default {
     components: {
@@ -193,34 +185,15 @@
           visible: false
         },
         bottom: '51px',
-        rows: []
+        rows: [],
+        loginPm: {
+          "account": "00001",
+          "password": "123456",
+          "remember": false
+        }
       }
     },
     computed: {
-      rows2 () {
-        for (var i = 0; i < this.listData.list.length; i++) {
-          if (!this.listData.list[i].photo) {
-            if (this.listData.list[i].sex === 0 || this.listData.list[i].sex === 1) {
-              this.listData.list[i].photo = '../customer/img/man.png'
-            } else if (this.listData.list[i].sex === 2) {
-              this.listData.list[i].photo = '../customer/img/woman.png'
-            }
-          } else {
-            this.listData.list[i].photo = Until.compHostUrl(this.listData.list[i].photo)
-          }
-          if (!this.listData.list[i].openId) {
-            this.listData.list[i].openId = false
-          }
-          if (Until.getUserInfo('roleId') === 0) {
-            this.listData.list[i].employeeName = '我'
-          }
-          var cd = this.listData.list[i].createdDate.toString()
-          if (cd.indexOf('.') < 0) {
-            this.listData.list[i].createdDate = this.formatTime(cd)
-          }
-        }
-        return this.listData.list
-      },
       maturityColors () {
         var maturityColors = []
         for (var i = 0; i < this.rows.length; i++) {
@@ -247,17 +220,8 @@
     },
     methods: {
       ...mapMutations(['HEADER_TITLE']),
-      moreSearch () {
-        this.showMark(false)
-        Until.openWindow({
-          url: '../customer/more-search.html',
-          id: 'moreSearch',
-          extras: {
-            rangeItem: this.rangeItem,
-            sourceItem: this.sourceItem,
-            trackItem: this.trackItem
-          }
-        })
+      detail (id) {
+        this.$router.push({path: '/customer/cusDetail', query: {id: id}})
       },
       // 条件筛选
       chooseSearch: function () {
@@ -281,39 +245,12 @@
           a[i].classList.remove('mui-active')
         }
       },
-      muiSearch (item) {
-        console.log(item)
+      morSearch (e) {
+        console.log(e)
+        this.$router.push('/customer/morSearch')
       },
-      goLable () {
-
-      },
-      detail (id) {
-        console.log(id)
-        this.$router.push('customer/cusDetail')
-      },
-      async initData () {
-        let sendObj = {
-          customerId: null,
-          matureId: null,
-          personInCharge: null,
-          sourceId: null,
-          ln: null,
-          gn: null,
-          startDate: null,
-          endDate: null,
-          role: null,
-          kw: null,
-          p: 1,
-          s: 10
-        }
-        let list = await getCustomerList(sendObj)
-        if (list.status) {
-          // mui.alert('请求成功')
-        }
-        this.rows = list.data.rows
-        console.log('hahahah')
-        console.log(this.rows)
-
+      goLab () {
+        this.$router.push('customer/lookLable')
       }
     },
     watch: {
@@ -324,10 +261,13 @@
 
       }
     },
+    mounted () {
+      this.$store.dispatch('cusList').then(res => {
+        this.rows = res.list;
+      })
+    },
     created () {
       this.$store.commit('HEADER_TITLE', '顾客')
-      this.initData()
-
     }
   }
 </script>

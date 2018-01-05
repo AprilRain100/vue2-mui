@@ -1,20 +1,23 @@
 import App from '../App'
-import home from '@/components/home'
-import customer from '@/components/customer'
-import analysis from '@/components/analysis'
-import message from '@/components/message'
-import userinfo from '@/components/userinfo'
+const home = r => require.ensure([], () => r(require('@/components/home')), 'home')
+const customer = r => require.ensure([], () => r(require('@/components/customer')), 'customer')
+const analysis = r => require.ensure([], () => r(require('@/components/analysis')), 'analysis')
+const message = r => require.ensure([], () => r(require('@/components/message')), 'message')
+const userinfo = r => require.ensure([], () => r(require('@/components/userinfo')), 'userinfo')
 //  home 页面
-import homeIndex from '@/components/home/index'
-import homeFirst from '@/components/home/first'
-import homeSecond from '@/components/home/second'
-import homeThr from '@/components/home/thr'
-
+const homeIndex = r => require.ensure([], () => r(require('@/components/home/index')), 'homeIndex')
+const homeFirst = r => require.ensure([], () => r(require('@/components/home/first')), 'homeFirst')
+const homeSecond = r => require.ensure([], () => r(require('@/components/home/second')), 'homeSecond')
+const homeThr = r => require.ensure([], () => r(require('@/components/home/thr')), 'homeThr')
 // 顾客子页面 lookLable
-import cusIndex from '@/components/customer/index'
-import cusDetail from '@/components/customer/detail'
-import lookLable from '@/components/customer/lookLable'
-import morSearch from '@/components/customer/morSearch'
+const cusIndex = r => require.ensure([], () => r(require('@/components/customer/index')), 'cusIndex')
+const cusDetail = r => require.ensure([], () => r(require('@/components/customer/detail')), 'cusDetail')
+const lookLable = r => require.ensure([], () => r(require('@/components/customer/lookLable')), 'lookLable')
+const morSearch = r => require.ensure([], () => r(require('@/components/customer/morSearch')), 'morSearch')
+const cusInfo = r => require.ensure([], () => r(require('@/components/customer/customerInfo')), 'cusInfo')
+const follow = r => require.ensure([], () => r(require('@/components/customer/clickFollow')), 'follow')
+const dynamic = r => require.ensure([], () => r(require('@/components/customer/dynamic')), 'dynamic')
+const addPeople = r => require.ensure([], () => r(require('@/components/customer/addPeople')), 'addPeople')
 
 export default [
   {
@@ -27,7 +30,7 @@ export default [
       },
       {
         path: 'home',
-        name: 'homeIndex',
+        // name: 'homeIndex',
         component: homeIndex,
         children: [
           {
@@ -53,7 +56,7 @@ export default [
       },
       {
         path: 'customer',
-        name: 'customer',
+        // name: 'customer',
         component: cusIndex,
         children: [
           {
@@ -68,6 +71,26 @@ export default [
           {
             path: 'lookLable',
             component: lookLable
+          },
+          {
+            path: 'morSearch',
+            component: morSearch
+          },
+          {
+            path: 'cusInfo',
+            component: cusInfo
+          },
+          { // 点击跟进
+            path: 'follow',
+            component: follow
+          },
+          {
+            path: 'dynamic',
+            component: dynamic
+          },
+          {
+            path: 'addPeople',
+            component: addPeople
           }
         ]
       },

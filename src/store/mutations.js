@@ -8,5 +8,11 @@ export default {
   },
   FOOTBARSTATE (state, boolean) {
     state.footBarState = boolean
+  },
+  LOGINIFGO (state, obj) {
+    state.loginInfo = obj
+  },
+  CUSTOMERINFO (state, obj) {
+    state.customerInfo = obj
   }
 }

@@ -8,7 +8,7 @@
   }
 
   .mui-bar-tab .mui-tab-item.mui-active {
-    color: #f68c24;
+    color: #C37573;
   }
 
   .loadAppShadeLogo1::before {
@@ -30,6 +30,51 @@
 
   .mui-content {
     margin-top: 44px;
+  }
+  .router-fade-enter-active, .router-fade-leave-active {
+	  	transition: opacity .3s;
+	}
+	.router-fade-enter, .router-fade-leave-active {
+	  	opacity: 0;
+  }
+  
+
+    .router-slid-enter-active, .router-slid-leave-active {
+        transition: all .4s;
+    }
+    .router-slid-enter, .router-slid-leave-active {
+        transform: translate3d(2rem, 0, 0);
+        opacity: 0;
+    }
+
+
+  .vux-pop-out-enter-active,
+  .vux-pop-out-leave-active,
+  .vux-pop-in-enter-active,
+  .vux-pop-in-leave-active {
+    will-change: transform;
+    transition: all 300ms;
+    height: 100%;
+    top: 0;
+    position: absolute;
+    backface-visibility: hidden;
+    perspective: 1000;
+  }
+  .vux-pop-out-enter {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+  .vux-pop-out-leave-active {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+  .vux-pop-in-enter {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+  .vux-pop-in-leave-active {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
   }
 </style>
 
@@ -61,7 +106,11 @@
       >
       </mui-footer-item>
     </mui-footer>
-    <router-view/>
+    <transition name="router-fade" mode="out-in">
+			<keep-alive>
+			    <router-view></router-view>
+			</keep-alive>
+    	</transition>
   </div>
 </template>
 <script>
@@ -84,13 +133,13 @@
         navBars: [
           {label: '首页', icon: 'yk-icon-home', href: '/'},
           {label: '顾客', icon: 'yk-icon-customer', href: '/customer'},
-          {
-            label: '消息',
-            icon: 'yk-icon-chatboxes',
-            href: '/message',
-            badge: false
-          },
-          {label: '分析', icon: 'yk-icon-chart-pie', href: '/analysis'},
+          // {
+          //   label: '消息',
+          //   icon: 'yk-icon-chatboxes',
+          //   href: '/message',
+          //   badge: false
+          // },
+          // {label: '分析', icon: 'yk-icon-chart-pie', href: '/analysis'},
           {label: '我的', icon: 'yk-icon-person', href: '/userinfo'}
         ],
         footerData: {
@@ -128,6 +177,14 @@
       }
     },
     created () {
+      let o = {
+        'account': 'zxxsjl',
+        'password': '123456',
+        'remember': false
+      }
+      this.$store.dispatch('login', o).then(res => {
+        console.log(res)
+      })
       this.$store.commit('HEADER_TITLE', '我觉得他们很傻逼')
       console.log(this.title)
     },

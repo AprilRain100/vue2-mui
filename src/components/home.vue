@@ -12,11 +12,11 @@
     </mui-header>
     <div class="mui-content">
       <div class="mui-content-padded mui-clearfix ">
-        <div class="listMessage">公众号当前粉丝数：<span>{{test}}</span>人</div>
-        <div class="listMessage">获取电话数：<span>{{test}}</span>人</div>
-        <div class="listMessage">到访数：<span>{{test}}</span>人</div>
-        <div class="listMessage">本周增长粉丝数：<span>{{test}}</span>人</div>
-        <div class="listMessage">本月增长粉丝数：<span>{{test}}</span>人</div>
+        <div class="listMessage">公众号当前粉丝数：<span>{{detail.c_count}}人</span></div>
+        <div class="listMessage">获取电话数：<span>{{detail.h_count}}人</span></div>
+        <div class="listMessage">到访数：<span>{{detail.d_count}}人</span></div>
+        <div class="listMessage">本周增长粉丝数：<span>{{detail.z_count}}人</span></div>
+        <div class="listMessage">本月增长粉丝数：<span>{{detail.y_count}}人</span></div>
       </div>
 
       <div class="mui-clearfix top-box">
@@ -29,7 +29,7 @@
         <div class="mui-pull-left pie" id="myChart" style="width: 100%;height:200px;"></div>
       </div>
     </div>
-    <div v-if="!clickCenter">
+    <div v-if="clickCenter">
       <router-link to="/home/first">前往第一个子页面</router-link>
       <router-link to="/home/second">前往第2个子页面</router-link>
     </div>
@@ -87,6 +87,7 @@
           index: 0
         },
         test: 1111,
+        detail: {},
         currentHeader: {
           title: '首页',
           btns: [
@@ -99,8 +100,8 @@
           ]
         },
         children: false,
+        myChart: '',
         msg: 'Welcome to Your Vue.js App',
-        test: 1111,
         charOption: {
           // 饼状图配置
           title: {
@@ -108,9 +109,10 @@
             subtext: '单位/人',
             textStyle: {
               fontSize: 14,
-              right: 0,
+              right: 100,
               top: 20,
-              bottom: 20
+              bottom: 20,
+              align: 'right'
             }
           },
           grid: {
@@ -124,12 +126,13 @@
           },
           legend: {
             type: 'scroll',
+            icon: 'line',
             data: ['新增', '获取电话', '到访'],
             textStyle: {
               fontSize: 11
             },
             // right: 0,
-            top: 25,
+            top: 35,
             bottom: 20
           },
           xAxis: {
@@ -176,28 +179,67 @@
     },
     methods: {
       ...mapMutations(['HEADER_TITLE']),
-      drawLine () {
-        // 统计图表
-        let myChart = echarts.init(document.getElementById('myChart'))
-        myChart.setOption(this.charOption)
-      },
-      changeDate (index) { // 不同日期
-        console.log(index)
-        if (index === 7) {
-          this.clickCenter = true
-        } else {
-          this.clickCenter = false
-        }
+      changeDate (date) { // 不同日期
+      var a;
+      switch (date) {
+          case 7:
+                a = this.toChartsDatas(this.detail.thisweek);
+              break;
+          case 10:
+                a = this.toChartsDatas(this.detail.tendays);
+              break;
+          default:
+                a = this.toChartsDatas(this.detail.thismonth);
+              break;
+      }
+        this.charOption.xAxis.data = a.date;
+        this.charOption.series[0].data = a.x;
+        this.charOption.series[1].data = a.h;
+        this.charOption.series[2].data = a.d;
+        this.myChart.setOption(this.charOption);
       },
       muiTabClick (index, href) {
         this.footerData.index = index
         this.$router.push(href)
+      },
+       // 饼图数据设置
+      toChartsDatas: function (data) {
+          var obj = {};
+          for (var name in data) {
+              var ars = data[name],
+                  d = [],
+                  date = [];
+              ars.forEach(function (value, index) {
+                  for (var i in value) {
+                      date.push(i);
+                      d.push(value[i]);
+                  }
+              });
+              obj[name] = d;
+              obj.date = date;
+          }
+          return obj;
       }
     },
-    created () {},
+    created () {
+      this.$store.dispatch('homeQuery', '').then(res => {
+        this.detail = res.detail;
+      })
+    },
+    watch: {
+      detail() {
+      // 实例化饼状图组件
+        this.myChart = echarts.init(document.getElementById('myChart'));
+        var a = this.toChartsDatas(this.detail.tendays);
+        this.charOption.xAxis.data = a.date;
+        this.charOption.series[0].data = a.x
+        this.charOption.series[1].data = a.h
+        this.charOption.series[2].data = a.d
+        this.myChart.setOption(this.charOption);
+      }
+    },
     mounted () {
       this.HEADER_TITLE('首页')
-      this.drawLine()
       // mui.alert('你好，这个世界');
       // mui.alert(this.tests);
     }
@@ -214,13 +256,34 @@
       margin: 10px;
     }
   }
-
+  #myChart {
+    margin-top: 15px;
+  }
+  #sliderSegmentedControl {
+    .mui-active {
+      border: none;
+    }
+    .mui-active:before {
+      content: '';
+      width: 55px;
+      height: 2px;
+      background: #C37573;
+      position: absolute;
+      bottom: 0;
+      margin: auto;
+      left: 0;
+      right: 0;
+      }
+  }
   .mui-clearfix {
-    border: 1px solid #c4c4c4;
     background: #fff;
     .listMessage {
+      position: relative;
       padding: 10px;
+      font-size: 14px;
       span {
+        position: absolute;
+        left: 50%;
         color: #f68c24;
         font-size: 16px;
       }
